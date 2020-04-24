@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.1.13.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<!-- 视频监测服务 -->
+	<groupId>com.troila.buildings</groupId>
+	<artifactId>device-monitor</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>device-monitor</name>
+	<description>Demo project for Spring Boot</description>
+
+	<properties>
+		<java.version>1.8</java.version>
+	</properties>
+	
+	<!-- 告诉maven需要下载SNAPSHOT，并且强制更新快照版本 -->
+	<repositories>
+		<repository>
+			<id>localNexus</id>
+			<url>http://172.24.104.55:8081/repository/maven-public/</url>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+			</snapshots>
+		</repository>	
+	</repositories>
+
+	<dependencies>
+		<!-- <dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-freemarker</artifactId> 
+			</dependency> -->
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
+		</dependency>
+	
+		<!-- 当Springboot版本为2.x较高时，使用spring-boot-starter-data-redis引用redis，默认Lettuce（原来默认时jedis）作为Redis Client，
+		此为基于netty的不过需要自己添加如下commons-pool2的依赖包 -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-pool2</artifactId>
+		</dependency>
+		
+		 <!-- 自定义结果集包装组件，一般的请求application/json的格式，会对其进行包装 -->
+        <dependency>
+            <groupId>io.github.betterigo</groupId>
+            <artifactId>respack-spring-boot-starter</artifactId>
+            <version>1.1.2</version>
+        </dependency>
+		
+		<dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <!-- 不进行依赖传递 -->
+            <optional>true</optional>
+        </dependency>
+        
+        <!-- jna 用于dll调用 -->
+		<dependency>
+			<groupId>com.sun.jna</groupId>
+			<artifactId>jna</artifactId>
+			<version>3.0.9</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.sun.jna.examples</groupId>
+	        <artifactId>test</artifactId>
+	        <version>1.0</version>
+	        <scope>system</scope>
+	        <systemPath>${basedir}/lib/examples.jar</systemPath>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.dom4j/dom4j -->
+		<dependency>
+		    <groupId>org.dom4j</groupId>
+		    <artifactId>dom4j</artifactId>
+		    <version>2.1.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
